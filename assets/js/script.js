@@ -51,8 +51,17 @@ $(document).ready(function () {
   //executes checkTime function upon page load, and then every 5 minutes page is open
   checkTime();
   setInterval(checkTime, 300000);
+  getSavedItems();
 
+  function getSavedItems() {
+    for (i = 9; i < 18; i++) {
+      var key = '0' + i;
+      var info = $('.description');
+      $('#0' + i).children(info).val(localStorage.getItem(key));
 
+    }
+
+    
   }
-})
+});
 
