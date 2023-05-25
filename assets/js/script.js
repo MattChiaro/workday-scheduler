@@ -1,14 +1,10 @@
 var currentTime = (dayjs().format('HH')); // current hour in 24 hour format
 var currentDate = dayjs().format('dddd, MMMM D, YYYY'); // current date in format: day of week, month, day, year
 
-console.log(currentTime);
-
-
-
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-function run() {
+$(document).ready(function () {
 
 
   // TODO: Add a listener for click events on the save button. This code should
@@ -18,16 +14,19 @@ function run() {
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
   //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
 
+  $('.saveBtn').on('click', function (event) {
+    event.preventDefault();
+    var time = $(this).parent().attr('id');
+    var text = $(this).siblings('.description').val();
+    localStorage.setItem(time, text);
+});
+
+
+  //Checks current time and then applies styling to each time block based on logic
   function checkTime() {
     for (i = 9; i < 18; i++) {
       var hour = $('#0' + i);
-      console.log(hour);
       if (($(hour).attr('id')) === (0 + currentTime)) {
         hour.addClass('present');
       } else if (Number(($(hour).attr('id'))) < (0 + currentTime)) {
@@ -40,15 +39,20 @@ function run() {
     
   }
 
+
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
 
+  //displays current day and time at top of page
   $('#currentDay').text(currentDate);
- 
+  
+  //executes checkTime function upon page load, and then every 5 minutes page is open
   checkTime();
+  setInterval(checkTime, 300000);
 
-};
 
-run();
+  }
+})
+
