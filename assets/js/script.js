@@ -1,4 +1,5 @@
 var currentTime = (dayjs().format('HH')); // current hour in 24 hour format
+// var currentTime = ('14') // FOR TESTING PURPOSES ONLY! -- COMMENT THIS OUT FOR TRUE FUNCTIONALITY
 var currentDate = dayjs().format('dddd, MMMM D, YYYY'); // current date in format: day of week, month, day, year
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
