@@ -2,17 +2,19 @@ var currentTime = (dayjs().format('HH')); // current hour in 24 hour format
 // var currentTime = ('14') // FOR TESTING PURPOSES ONLY! -- COMMENT THIS OUT FOR TRUE FUNCTIONALITY
 var currentDate = dayjs().format('dddd, MMMM D, YYYY'); // current date in format: day of week, month, day, year
 
+
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(document).ready(function () {
 
-
+// saves value of text box to localstorage, as well as current date so clearCalOnNewDay works as well.
   $('.saveBtn').on('click', function (event) {
     event.preventDefault();
     var time = $(this).parent().attr('id');
     var text = $(this).siblings('.description').val();
     localStorage.setItem(time, text);
+    localStorage.setItem('date', dayjs().format('dddd, MMMM D, YYYY'));
   });
 
 
@@ -41,13 +43,23 @@ $(document).ready(function () {
     }
   }
 
+// If date stored in local storage doesn't match current date, you are using the calendar on a new day - so clear the calendar
+  function clearCalOnNewDay() {
+    if (localStorage.getItem('date') !== dayjs().format('dddd, MMMM D, YYYY')) {
+      localStorage.clear();
+    }
+  }
+
   //displays current day and time at top of page
   $('#currentDay').text(currentDate);
 
-  //executes checkTime function upon page load, and then every 5 minutes page is open, and gets saved items from localStorage
+  //executes checkTime function upon page load, and then every 5 minutes page is open, and clears local storage if new day. if same day, gets saved items from localStorage.
   checkTime();
   setInterval(checkTime, 300000);
+  clearCalOnNewDay();
   getSavedItems();
+
+
 
 });
 
