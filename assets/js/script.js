@@ -28,11 +28,11 @@ function run() {
     for (i = 9; i < 18; i++) {
       var hour = $('#0' + i);
       console.log(hour);
-      if ($(hour) === currentTime) {
+      if (($(hour).attr('id')) === (0 + currentTime)) {
         hour.addClass('present');
-      } else if ($(hour) < currentTime) {
+      } else if (Number(($(hour).attr('id'))) < (0 + currentTime)) {
         hour.addClass('past');
-      } else { ($(hour) > currentTime);
+      } else {
         hour.addClass('future');
     }
      
