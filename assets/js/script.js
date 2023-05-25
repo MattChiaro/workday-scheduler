@@ -8,7 +8,7 @@ var currentDate = dayjs().format('dddd, MMMM D, YYYY'); // current date in forma
 // in the html.
 $(document).ready(function () {
 
-// saves value of text box to localstorage, as well as current date so clearCalOnNewDay works as well.
+// saves value of text box to localstorage, as well as current date so clearCalOnNewDay works.
   $('.saveBtn').on('click', function (event) {
     event.preventDefault();
     var time = $(this).parent().attr('id');
@@ -53,13 +53,10 @@ $(document).ready(function () {
   //displays current day and time at top of page
   $('#currentDay').text(currentDate);
 
-  //executes checkTime function upon page load, and then every 5 minutes page is open, and clears local storage if new day. if same day, gets saved items from localStorage.
+  //executes checkTime function upon page load, and then every 5 minutes page is open. Clears local storage if new day. Gets saved items from localStorage.
   checkTime();
   setInterval(checkTime, 300000);
   clearCalOnNewDay();
   getSavedItems();
 
-
-
 });
-
