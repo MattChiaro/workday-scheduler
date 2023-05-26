@@ -2,21 +2,13 @@ var currentTime = (dayjs().format('HH')); // current hour in 24 hour format
 // var currentTime = ('14') // FOR TESTING PURPOSES ONLY! -- COMMENT THIS OUT FOR TRUE FUNCTIONALITY
 var currentDate = dayjs().format('dddd, MMMM D, YYYY'); // current date in format: day of week, month, day, year
 
-
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-$(document).ready(function () {
-
-// saves value of text box to localstorage, as well as current date so clearCalOnNewDay works.
-  $('.saveBtn').on('click', function (event) {
-    event.preventDefault();
-    var time = $(this).parent().attr('id');
-    var text = $(this).siblings('.description').val();
-    localStorage.setItem(time, text);
-    localStorage.setItem('date', dayjs().format('dddd, MMMM D, YYYY'));
-  });
-
+function clearIt(isTrue) {
+  if (isTrue) {
+    localStorage.clear();
+    getSavedItems();
+  }
+  $('#modal').modal('hide');
+}
 
   //Checks current time and then applies styling to each time block based on logic
   function checkTime() {
@@ -34,7 +26,7 @@ $(document).ready(function () {
 
   }
 
-  //checks localStorage and displays any saved values to their respective blocks 
+    //checks localStorage and displays any saved values to their respective blocks 
   function getSavedItems() {
     for (i = 9; i < 18; i++) {
       var key = '0' + i;
@@ -43,12 +35,26 @@ $(document).ready(function () {
     }
   }
 
-// If date stored in local storage doesn't match current date, you are using the calendar on a new day - so clear the calendar
+  // If date stored in local storage doesn't match current date, you are using the calendar on a new day - so clear the calendar
   function clearCalOnNewDay() {
-    if (localStorage.getItem('date') !== dayjs().format('dddd, MMMM D, YYYY')) {
-      localStorage.clear();
+    var date = localStorage.getItem('date');
+    if(!date) return;
+    if (date !== dayjs().format('dddd, MMMM D, YYYY')) { 
+      $('#modalLabel').text(currentDate);
+      $('#modal').modal('show');
     }
   }
+
+$(document).ready(function () {
+
+  // saves value of text box to localstorage, as well as current date so clearCalOnNewDay works.
+  $('.saveBtn').on('click', function (event) {
+    event.preventDefault();
+    var time = $(this).parent().attr('id');
+    var text = $(this).siblings('.description').val();
+    localStorage.setItem(time, text);
+    localStorage.setItem('date', dayjs().format('dddd, MMMM D, YYYY'));
+  });
 
   //displays current day and time at top of page
   $('#currentDay').text(currentDate);
