@@ -2,6 +2,8 @@ var currentTime = (dayjs().format('HH')); // current hour in 24 hour format
 // var currentTime = ('14') // FOR TESTING PURPOSES ONLY! -- COMMENT THIS OUT FOR TRUE FUNCTIONALITY
 var currentDate = dayjs().format('dddd, MMMM D, YYYY'); // current date in format: day of week, month, day, year
 
+
+//functionality for the buttons on the modal. If true, clear storage and populate calendar blank.
 function clearIt(isTrue) {
   if (isTrue) {
     localStorage.clear();
@@ -45,6 +47,7 @@ function clearIt(isTrue) {
     }
   }
 
+  //Jquery functions
 $(document).ready(function () {
 
   // saves value of text box to localstorage, as well as current date so clearCalOnNewDay works.
