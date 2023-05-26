@@ -2,7 +2,7 @@
 
 ## Description
 
-The purpose of this project was to, using starter code, create a single day calendar within the browser that you can save events to. As the day moves on, each individual hour block will be assigned different colors: one for the current hour, one for all past hours, and one for future hours. If you save a to-do list/event in an hour block, upon reloading of the page the event will remain thanks to a call to localStorage.
+The purpose of this project was to, using starter code, create a single day calendar within the browser that you can save events to. As the day moves on, each individual hour block will be assigned different colors: one for the current hour, one for all past hours, and one for future hours. If you save a to-do list/event in an hour block, upon reloading of the page the event will remain thanks to a call to localStorage. Additionally, if you use the calendar on a date other than the day all events were saved, you are prompted if you want to clear all fields or keep them the same. This way, you can start the day with a fresh new calendar!
 
 All time-based functions were implemented with help from ```dayjs()```, and ```jquery()``` was used to simplify functions. All calls to ```jquery()``` are wrapped in a ```document.ready()``` function to ensure they interact with the DOM properly.
 
@@ -14,4 +14,9 @@ Project is live at https://mattchiaro.github.io/workday-scheduler/
 
 Go to above link - make sure to use save button to log your changes!
 
+## Standard Functionality:
 ![gif of functionality](./assets/images/functionality-test-gif.gif)
+
+
+## Modal activating upon day change:
+![gif of modal active](./assets/images/Modal-test-gif.gif)
