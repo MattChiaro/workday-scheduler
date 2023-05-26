@@ -20,3 +20,9 @@ Go to above link - make sure to use save button to log your changes!
 
 ## Modal activating upon day change:
 ![gif of modal active](./assets/images/Modal-test-gif.gif)
+
+## CREDITS
+
+The idea for the option to fully clear your calendar was inspired by another student, Trevor Kuhner. https://github.com/TKuhner
+
+The idea for the modal was in-part aided with the help of a tutor. Previously, calendar would clear automatically upon day change without input from the user. Modal was introduced to give you the option to keep your data if need be.
